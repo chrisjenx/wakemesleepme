@@ -78,10 +78,10 @@ public class UdpServer implements Iface
     {
         synchronized (mLock)
         {
-            if (!isServerRunning()) return;
-            if (mServerThread != null)
+            if (mServerThread != null && !mServerThread.isFinished())
             {
                 mServerThread.stopServer();
+                mServerThread = null;
             }
         }
     }
