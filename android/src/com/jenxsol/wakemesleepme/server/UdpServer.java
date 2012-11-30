@@ -5,31 +5,27 @@
  */
 package com.jenxsol.wakemesleepme.server;
 
-import java.net.DatagramSocket;
-import java.net.InetAddress;
-import java.net.SocketException;
-import java.net.UnknownHostException;
-
-import android.content.Context;
-import android.net.wifi.WifiInfo;
-import android.net.wifi.WifiManager;
-import android.text.format.Formatter;
-
 import com.jenxsol.wakemesleepme.WMSMApplication;
 import com.jenxsol.wakemesleepme.consts.Iface;
+
+import android.content.Context;
+import android.net.wifi.WifiManager;
+
+import de.greenrobot.event.EventBus;
 
 /**
  * @author chris.jenkins
  */
 public class UdpServer implements Iface
 {
+    // Event bus
+    private static EventBus sBus = EventBus.getDefault();
 
     private static UdpServer sSelf;
 
     public static final UdpServer get()
     {
-        if (null == sSelf)
-            sSelf = new UdpServer();
+        if (null == sSelf) sSelf = new UdpServer();
         return sSelf;
     }
 
@@ -37,34 +33,95 @@ public class UdpServer implements Iface
     protected final WifiManager mWifiManager = (WifiManager) mApp
             .getSystemService(Context.WIFI_SERVICE);
 
-    private DatagramSocket mSocket;
+    // Lock object
+    private final Object mLock = new Object();
+    private UdpServerThread mServerThread;
 
     private UdpServer()
     {
-        start();
     }
 
-    private void start()
+    /**
+     * Starts the server. Does nothing if the server is allready started
+     */
+    public void start()
     {
-        if (!mWifiManager.isWifiEnabled())
+        synchronized (mLock)
         {
-            return;
+            if (isServerRunning()) return;
+            if (mServerThread == null)
+            {
+                mServerThread = new UdpServerThread(null);
+            }
+            mServerThread.start();
         }
-        WifiInfo info = mWifiManager.getConnectionInfo();
-        final int ipAddress = info.getIpAddress();
-        final String ipAddressString = Formatter.formatIpAddress(ipAddress);
-        try
+    }
+
+    /**
+     * Method to send data out
+     * 
+     * @param data
+     */
+    public void sendPacket(String data)
+    {
+        if (data == null) return;
+        synchronized (mLock)
         {
-            mSocket = new DatagramSocket(UDP_PORT, InetAddress.getByName(ipAddressString));
-            mSocket = new DatagramSocket(UDP_PORT);
+            if (!isServerRunning()) return;
+            if (null == mServerThread) return;
+            mServerThread.addPacketToSend(data.getBytes(), data.length());
         }
-        catch (UnknownHostException e)
+
+    }
+
+    public void stop()
+    {
+        synchronized (mLock)
         {
-            e.printStackTrace();
+            if (!isServerRunning()) return;
+            if (mServerThread != null)
+            {
+                mServerThread.stopServer();
+            }
         }
-        catch (SocketException e)
+    }
+
+    /**
+     * Is the server running
+     * 
+     * @return
+     */
+    private final boolean isServerRunning()
+    {
+        if (null == mServerThread) return false;
+        if (mServerThread.isStarted() && mServerThread.isRunning()) return true;
+        return false;
+    }
+
+    /**
+     * Sticky event for if the server is running
+     * 
+     * @author chris
+     * 
+     */
+    public static final class EventServerStarted
+    {
+        public EventServerStarted()
         {
-            e.printStackTrace();
+        }
+    }
+
+    /**
+     * Event for if the server was stopped, the sticky event is removed on the
+     * server dieing
+     * 
+     * @author chris
+     * 
+     */
+    public static final class EventServerStopped
+    {
+        public EventServerStopped()
+        {
         }
     }
 }

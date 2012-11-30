@@ -7,17 +7,16 @@
     <uses-sdk
         android:minSdkVersion="8"
         android:targetSdkVersion="17" />
-    
+
     <!-- Permissions -->
-    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE"/>
-    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
-    <uses-permission android:name="android.permission.BLUETOOTH"/>
-    <uses-permission android:name="android.permission.BLUETOOTH_ADMIN"/>
-    <uses-permission android:name="android.permission.CHANGE_WIFI_STATE"/>
-    <uses-permission android:name="android.permission.INTERNET"/>
-    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED"/>
-    <uses-permission android:name="android.permission.WAKE_LOCK"/>
-    
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.BLUETOOTH" />
+    <uses-permission android:name="android.permission.BLUETOOTH_ADMIN" />
+    <uses-permission android:name="android.permission.CHANGE_WIFI_STATE" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
 
     <application
         android:name="com.jenxsol.wakemesleepme.WMSMApplication"
@@ -34,6 +33,42 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <!-- Services -->
+        <!-- BroadcastAliveService -->
+        <service
+            android:name=".services.BroadcastAliveIntentService"
+            android:enabled="true"
+            android:exported="false" />
+
+        <!-- Network changes -->
+        <receiver android:name="com.jenxsol.wakemesleepme.receivers.NetworkReceiver" >
+
+            <!-- Any network change -->
+            <intent-filter>
+                <action android:name="android.net.conn.CONNECTIVITY_CHANGE" />
+            </intent-filter>
+        </receiver>
+
+        <!-- Boot Receiver -->
+        <receiver android:name="com.jenxsol.wakemesleepme.receivers.BootReceiver" >
+
+            <!-- Boot received action -->
+            <intent-filter>
+                <action android:name="android.intent.action.BOOT_COMPLETED" />
+            </intent-filter>
+        </receiver>
+
+        <!-- BroadcastAlive Receiver -->
+        <receiver
+            android:name="com.jenxsol.wakemesleepme.receivers.BroadcastAliveReceiver"
+            android:exported="false" >
+
+            <!-- Receiver action -->
+            <intent-filter>
+                <action android:name="com.jenxsol.wakemesleepme.receivers.BroadcastAliveReceiver" />
+            </intent-filter>
+        </receiver>
     </application>
 
 </manifest>
