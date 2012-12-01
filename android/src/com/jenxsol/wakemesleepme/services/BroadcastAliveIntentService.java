@@ -4,7 +4,6 @@ import android.content.Context;
 import android.content.Intent;
 
 import com.commonsware.cwac.wakeful.WakefulIntentService;
-import com.jenxsol.wakemesleepme.consts.Packets;
 import com.jenxsol.wakemesleepme.server.UdpServer;
 import com.jenxsol.wakemesleepme.utils.PacketSupport;
 import com.jenxsol.wakemesleepme.utils.QLog;
@@ -49,10 +48,10 @@ public class BroadcastAliveIntentService extends WakefulIntentService
             return;
         }
         // server.start();
-        server.sendPacket(Packets.sAliveString);
+        server.sendPacket(PacketSupport.createAlivePacket());
         // server.sendPacket(PacketSupport.createWoLANPacket("C8:2A:14:2A:37:BA")); // Mine
         // server.sendPacket(PacketSupport.createWoLANPacket("30:85:A9:E1:D2:6D"));
-        server.sendPacket(PacketSupport.createWoLANPacket("58:B0:35:F2:DE:46")); // vals
+        // server.sendPacket(PacketSupport.createWoLANPacket("58:B0:35:F2:DE:46")); // vals
     }
 
 }

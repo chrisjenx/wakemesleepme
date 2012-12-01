@@ -2,14 +2,31 @@ package com.jenxsol.wakemesleepme.utils;
 
 import java.net.DatagramPacket;
 
+import com.jenxsol.wakemesleepme.consts.Iface;
+
 public class PacketSupport
 {
 
     public static final int PORT_WOL = 9;
 
+    private static final StringBuilder sb = new StringBuilder();
+
+    public static final DatagramPacket createAlivePacket()
+    {
+        String macString = WiFiSupport.getMacAddress();
+        sb.setLength(0);
+
+        sb.append('{').append("\"mac\" : \"").append(macString).append("\",").append("\"type\":")
+                .append("\"mobile\",").append("\"status\":\"alive\"");
+        String request = sb.toString();
+        DatagramPacket p = new DatagramPacket(request.getBytes(), request.length());
+        p.setPort(Iface.UDP_PORT_DESKTOP);
+        return p;
+    }
+
     /**
-     * Will create a packet without an address specified, you need to attach the
-     * broadcast address to the packet
+     * Will create a packet without an address specified, you need to attach the broadcast address
+     * to the packet
      * 
      * @param macAddressString
      * @return
@@ -68,7 +85,7 @@ public class PacketSupport
         // 40000);
     }
 
-    private static byte[] getMacAddressBytes(String macStr) throws IllegalArgumentException
+    public static byte[] getMacAddressBytes(String macStr) throws IllegalArgumentException
     {
         byte[] bytes = new byte[6];
         String[] hex = macStr.split("(\\:|\\-)");
