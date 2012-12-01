@@ -5,8 +5,11 @@
  */
 package com.jenxsol.wakemesleepme.server;
 
+import java.net.DatagramPacket;
+
 import com.jenxsol.wakemesleepme.WMSMApplication;
 import com.jenxsol.wakemesleepme.consts.Iface;
+import com.jenxsol.wakemesleepme.utils.QLog;
 
 import android.content.Context;
 import android.net.wifi.WifiManager;
@@ -71,7 +74,22 @@ public class UdpServer implements Iface
             if (null == mServerThread) return;
             mServerThread.addPacketToSend(data.getBytes(), data.length());
         }
+    }
 
+    /**
+     * Send pre-formatted packet
+     * 
+     * @param packet
+     */
+    public void sendPacket(DatagramPacket packet)
+    {
+        if (packet == null) return;
+        synchronized (mLock)
+        {
+            if (!isServerRunning()) return;
+            if (null == mServerThread) return;
+            mServerThread.addPacketToSend(packet);
+        }
     }
 
     public void stop()
@@ -82,6 +100,7 @@ public class UdpServer implements Iface
             {
                 mServerThread.stopServer();
                 mServerThread = null;
+                QLog.d("Stopping server");
             }
         }
     }

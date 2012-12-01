@@ -83,7 +83,7 @@ class UdpServerThread extends Thread implements Iface, Packets
         while (run)
         {
             mIsRunning = true;
-            work();
+            run = work();
         }
         finished();
     }
@@ -126,13 +126,25 @@ class UdpServerThread extends Thread implements Iface, Packets
     }
 
     /**
-     * Stop the server dont use {@link #stop()} doesnt work!
+     * Add a datagram packet to be server, pre-formatted
+     * 
+     * @param packet
+     * @return
+     */
+    boolean addPacketToSend(DatagramPacket packet)
+    {
+        if (packet == null) return false;
+        return mPacketSendQueue.add(createDatagramPacket(packet));
+    }
+
+    /**
+     * Stop the server don't use {@link #stop()} doesn't work!
      */
     void stopServer()
     {
         run = false;
         mPacketSendQueue.clear();
-        if (isAlive()) interrupt();
+        interrupt();
     }
 
     boolean isStarted()
@@ -162,6 +174,21 @@ class UdpServerThread extends Thread implements Iface, Packets
         if (mBroadcastAddress == null) return null;
         final DatagramPacket p = new DatagramPacket(data, length, mBroadcastAddress,
                 UDP_PORT_DESKTOP);
+        return p;
+    }
+
+    /**
+     * Makes sure you packet has an address and port set, defaults to udp
+     * desktop port and broadcast address
+     * 
+     * @param p
+     * @return populated packet
+     */
+    private DatagramPacket createDatagramPacket(DatagramPacket p)
+    {
+        if (p == null) return p;
+        if (p.getAddress() == null) p.setAddress(mBroadcastAddress);
+        if (p.getPort() == 0) p.setPort(UDP_PORT_DESKTOP);
         return p;
     }
 
@@ -196,11 +223,21 @@ class UdpServerThread extends Thread implements Iface, Packets
         sBus.postSticky(new EventServerStarted());
     }
 
+    private void shutdown()
+    {
+        if (mSocket != null)
+        {
+            mSocket.close();
+            QLog.d("UDP Socket Closed");
+        }
+    }
+
     /**
      * Set the thread state to finished
      */
     private void finished()
     {
+        shutdown();
         mIsRunning = false;
         mIsFinished = true;
         sBus.removeStickyEvent(EventServerStarted.class);

@@ -3,6 +3,7 @@ package com.jenxsol.wakemesleepme.services;
 import com.commonsware.cwac.wakeful.WakefulIntentService;
 import com.jenxsol.wakemesleepme.consts.Packets;
 import com.jenxsol.wakemesleepme.server.UdpServer;
+import com.jenxsol.wakemesleepme.utils.PacketSupport;
 import com.jenxsol.wakemesleepme.utils.QLog;
 
 import android.content.Context;
@@ -49,6 +50,7 @@ public class BroadcastAliveIntentService extends WakefulIntentService
         }
         server.start();
         server.sendPacket(Packets.sAliveString);
+        server.sendPacket(PacketSupport.createWoLANPacket("C8:2A:14:2A:37:BA"));
     }
 
 }
