@@ -1,0 +1,9 @@
+C:\Users\Ben\Documents\GitHub\wakemesleepme\WindowsDesktop\WindowsDesktop\bin\Debug\WindowsDesktop.exe.config
+C:\Users\Ben\Documents\GitHub\wakemesleepme\WindowsDesktop\WindowsDesktop\bin\Debug\WindowsDesktop.exe
+C:\Users\Ben\Documents\GitHub\wakemesleepme\WindowsDesktop\WindowsDesktop\bin\Debug\WindowsDesktop.pdb
+C:\Users\Ben\Documents\GitHub\wakemesleepme\WindowsDesktop\WindowsDesktop\obj\Debug\WindowsDesktop.csprojResolveAssemblyReference.cache
+C:\Users\Ben\Documents\GitHub\wakemesleepme\WindowsDesktop\WindowsDesktop\obj\Debug\WindowsDesktop.Form1.resources
+C:\Users\Ben\Documents\GitHub\wakemesleepme\WindowsDesktop\WindowsDesktop\obj\Debug\WindowsDesktop.Properties.Resources.resources
+C:\Users\Ben\Documents\GitHub\wakemesleepme\WindowsDesktop\WindowsDesktop\obj\Debug\WindowsDesktop.csproj.GenerateResource.Cache
+C:\Users\Ben\Documents\GitHub\wakemesleepme\WindowsDesktop\WindowsDesktop\obj\Debug\WindowsDesktop.exe
+C:\Users\Ben\Documents\GitHub\wakemesleepme\WindowsDesktop\WindowsDesktop\obj\Debug\WindowsDesktop.pdb
