@@ -7,18 +7,19 @@ import java.net.InetAddress;
 import java.net.SocketException;
 import java.util.concurrent.LinkedBlockingQueue;
 
+import android.os.Handler;
+
 import com.jenxsol.wakemesleepme.consts.Iface;
 import com.jenxsol.wakemesleepme.consts.Packets;
 import com.jenxsol.wakemesleepme.server.UdpServer.EventServerStarted;
 import com.jenxsol.wakemesleepme.server.UdpServer.EventServerStopped;
+import com.jenxsol.wakemesleepme.services.LoggingFragment.EventLogOutput;
 import com.jenxsol.wakemesleepme.utils.QLog;
 import com.jenxsol.wakemesleepme.utils.WiFiSupport;
 
-import android.os.Handler;
-
 import de.greenrobot.event.EventBus;
 
-class UdpServerThread extends Thread implements Iface, Packets
+class UdpServerThread extends Thread implements Iface, Packets, OnDataReceivedListener
 {
 
     private static final EventBus sBus = EventBus.getDefault();
@@ -33,6 +34,7 @@ class UdpServerThread extends Thread implements Iface, Packets
 
     private InetAddress mBroadcastAddress = null;
     private DatagramSocket mSocket;
+    private UdpListenThread mListenerThread;
 
     public UdpServerThread(Handler handler)
     {
@@ -48,15 +50,19 @@ class UdpServerThread extends Thread implements Iface, Packets
         if (!WiFiSupport.isWiFiConnected())
         {
             QLog.d("WiFi Off");
+            sBus.post(new EventLogOutput("WiFi Off, Do nothing. sorry!"));
             // TODO send sticky event
             return false;
         }
         try
         {
             mBroadcastAddress = WiFiSupport.getBroadcastAddress();
-            QLog.d("WiFi Broadcast address: " + mBroadcastAddress.getHostAddress());
+            // QLog.d("WiFi Broadcast address: " + mBroadcastAddress.getHostAddress());
             mSocket = new DatagramSocket(UDP_PORT_ANDROID);
             mSocket.setBroadcast(true);
+            mListenerThread = new UdpListenThread(mSocket, this);
+            sBus.post(new EventLogOutput("UDP Server bound to: "
+                    + mSocket.getLocalAddress().getHostAddress() + ":" + UDP_PORT_ANDROID));
             return true;
         }
         catch (SocketException e)
@@ -89,6 +95,17 @@ class UdpServerThread extends Thread implements Iface, Packets
     }
 
     /**
+     * @see com.jenxsol.wakemesleepme.server.OnDataReceivedListener#onDataReceived(java.net.DatagramPacket)
+     */
+    @Override
+    public void onDataReceived(DatagramPacket packet)
+    {
+        sBus.post(new EventLogOutput("Received Packet: " + packet.getAddress().getHostAddress()
+                + " Message: " + new String(packet.getData())));
+
+    }
+
+    /**
      * Does actual work or waits in here
      * 
      * @return false if we finished do work
@@ -96,9 +113,12 @@ class UdpServerThread extends Thread implements Iface, Packets
     protected boolean work()
     {
         // Check state before doing work
-        if (mSocket == null) return false;
-        if (!mSocket.isBound()) return false;
-        if (mSocket.isClosed()) return false;
+        if (mSocket == null)
+            return false;
+        if (!mSocket.isBound())
+            return false;
+        if (mSocket.isClosed())
+            return false;
 
         try
         {
@@ -111,17 +131,16 @@ class UdpServerThread extends Thread implements Iface, Packets
     }
 
     /**
-     * Add a packet to the send queue. This will add the address and port to the
-     * packet
+     * Add a packet to the send queue. This will add the address and port to the packet
      * 
      * @param data
      * @param length
-     * @return true if added to the queue.. does not mean the packet has been
-     *         sent tho!
+     * @return true if added to the queue.. does not mean the packet has been sent tho!
      */
     boolean addPacketToSend(byte[] data, int length)
     {
-        if (data == null || length == 0) return false;
+        if (data == null || length == 0)
+            return false;
         return mPacketSendQueue.add(createDatagramPacket(data, length));
     }
 
@@ -133,7 +152,8 @@ class UdpServerThread extends Thread implements Iface, Packets
      */
     boolean addPacketToSend(DatagramPacket packet)
     {
-        if (packet == null) return false;
+        if (packet == null)
+            return false;
         return mPacketSendQueue.add(createDatagramPacket(packet));
     }
 
@@ -171,24 +191,28 @@ class UdpServerThread extends Thread implements Iface, Packets
      */
     private DatagramPacket createDatagramPacket(byte[] data, int length)
     {
-        if (mBroadcastAddress == null) return null;
+        if (mBroadcastAddress == null)
+            return null;
         final DatagramPacket p = new DatagramPacket(data, length, mBroadcastAddress,
                 UDP_PORT_DESKTOP);
         return p;
     }
 
     /**
-     * Makes sure you packet has an address and port set, defaults to udp
-     * desktop port and broadcast address
+     * Makes sure you packet has an address and port set, defaults to udp desktop port and broadcast
+     * address
      * 
      * @param p
      * @return populated packet
      */
     private DatagramPacket createDatagramPacket(DatagramPacket p)
     {
-        if (p == null) return p;
-        if (p.getAddress() == null) p.setAddress(mBroadcastAddress);
-        if (p.getPort() == 0) p.setPort(UDP_PORT_DESKTOP);
+        if (p == null)
+            return p;
+        if (p.getAddress() == null)
+            p.setAddress(mBroadcastAddress);
+        if (p.getPort() == 0)
+            p.setPort(UDP_PORT_DESKTOP);
         return p;
     }
 
@@ -200,10 +224,15 @@ class UdpServerThread extends Thread implements Iface, Packets
      */
     private boolean sendPacket(final DatagramPacket packet)
     {
-        if (mSocket == null) return false;
+        if (mSocket == null)
+            return false;
         try
         {
             mSocket.send(packet);
+
+            sBus.post(new EventLogOutput("UDP Packet \" " + new String(packet.getData())
+                    + " \" sent to: " + mBroadcastAddress.getHostAddress() + ":"
+                    + packet.getPort()));
             QLog.d("Packet: " + packet + " Sent.");
             return true;
         }
@@ -227,7 +256,9 @@ class UdpServerThread extends Thread implements Iface, Packets
     {
         if (mSocket != null)
         {
+
             mSocket.close();
+            sBus.post(new EventLogOutput("UDP Server closed"));
             QLog.d("UDP Socket Closed");
         }
     }
@@ -242,6 +273,58 @@ class UdpServerThread extends Thread implements Iface, Packets
         mIsFinished = true;
         sBus.removeStickyEvent(EventServerStarted.class);
         sBus.post(new EventServerStopped());
+    }
+
+    static final class UdpListenThread extends Thread
+    {
+
+        private OnDataReceivedListener mListener;
+        private DatagramSocket mSocket;
+        private boolean run = false;
+
+        private UdpListenThread(final DatagramSocket socket, final OnDataReceivedListener listener)
+        {
+            mSocket = socket;
+            mListener = listener;
+            if (mSocket == null || mSocket.isClosed())
+            {
+
+                return;
+            }
+            run = true;
+            sBus.post(new EventLogOutput("Start listening"));
+            start();
+        }
+
+        /**
+         * @see java.lang.Thread#run()
+         */
+        @Override
+        public void run()
+        {
+            while (run)
+            {
+                run = listen();
+            }
+        }
+
+        private boolean listen()
+        {
+            // Empty data
+            final byte[] message = new byte[1500];
+            final DatagramPacket emptyPacket = new DatagramPacket(message, message.length);
+            try
+            {
+                mSocket.receive(emptyPacket);
+                mListener.onDataReceived(emptyPacket);
+                return true;
+            }
+            catch (IOException e)
+            {
+                QLog.w("UDP Receive error", e);
+                return false;
+            }
+        }
     }
 
 }

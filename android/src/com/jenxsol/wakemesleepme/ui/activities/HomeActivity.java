@@ -1,10 +1,11 @@
-package com.jenxsol.wakemesleepme;
+package com.jenxsol.wakemesleepme.ui.activities;
 
-import android.app.Activity;
 import android.os.Bundle;
 import android.view.Menu;
 
-public class HomeActivity extends Activity
+import com.jenxsol.wakemesleepme.R;
+
+public class HomeActivity extends BaseActivity
 {
 
     @Override

@@ -7,12 +7,12 @@ package com.jenxsol.wakemesleepme.server;
 
 import java.net.DatagramPacket;
 
+import android.content.Context;
+import android.net.wifi.WifiManager;
+
 import com.jenxsol.wakemesleepme.WMSMApplication;
 import com.jenxsol.wakemesleepme.consts.Iface;
 import com.jenxsol.wakemesleepme.utils.QLog;
-
-import android.content.Context;
-import android.net.wifi.WifiManager;
 
 import de.greenrobot.event.EventBus;
 
@@ -70,6 +70,7 @@ public class UdpServer implements Iface
         if (data == null) return;
         synchronized (mLock)
         {
+            start();
             if (!isServerRunning()) return;
             if (null == mServerThread) return;
             mServerThread.addPacketToSend(data.getBytes(), data.length());
