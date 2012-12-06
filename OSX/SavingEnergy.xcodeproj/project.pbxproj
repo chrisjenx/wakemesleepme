@@ -1,0 +1,513 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		FB3FEF8F166A24F80036D778 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FB3FEF8E166A24F80036D778 /* Cocoa.framework */; };
+		FB3FEF99166A24F80036D778 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = FB3FEF97166A24F80036D778 /* InfoPlist.strings */; };
+		FB3FEF9F166A24F80036D778 /* Credits.rtf in Resources */ = {isa = PBXBuildFile; fileRef = FB3FEF9D166A24F80036D778 /* Credits.rtf */; };
+		FB3FEFA2166A24F80036D778 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = FB3FEFA1166A24F80036D778 /* AppDelegate.m */; };
+		FB3FEFA5166A24F80036D778 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = FB3FEFA3166A24F80036D778 /* MainMenu.xib */; };
+		FB3FEFAD166A24F90036D778 /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FB3FEFAC166A24F90036D778 /* SenTestingKit.framework */; };
+		FB3FEFAE166A24F90036D778 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FB3FEF8E166A24F80036D778 /* Cocoa.framework */; };
+		FB3FEFB6166A24F90036D778 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = FB3FEFB4166A24F90036D778 /* InfoPlist.strings */; };
+		FB3FEFB9166A24F90036D778 /* SavingEnergyTests.m in Sources */ = {isa = PBXBuildFile; fileRef = FB3FEFB8166A24F90036D778 /* SavingEnergyTests.m */; };
+		FB3FEFC3166A26490036D778 /* View.xib in Resources */ = {isa = PBXBuildFile; fileRef = FB3FEFC2166A26490036D778 /* View.xib */; };
+		FB5965B0166A42AD00A09A54 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FB5965AF166A42AD00A09A54 /* Foundation.framework */; };
+		FB5965B2166A42B900A09A54 /* CoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FB5965B1166A42B900A09A54 /* CoreServices.framework */; };
+		FB5965B7166A448F00A09A54 /* GCDAsyncSocket.m in Sources */ = {isa = PBXBuildFile; fileRef = FB5965B4166A448F00A09A54 /* GCDAsyncSocket.m */; };
+		FB5965B8166A448F00A09A54 /* GCDAsyncUdpSocket.m in Sources */ = {isa = PBXBuildFile; fileRef = FB5965B6166A448F00A09A54 /* GCDAsyncUdpSocket.m */; };
+		FB5965C3166A48D400A09A54 /* package.txt in Resources */ = {isa = PBXBuildFile; fileRef = FB5965C2166A48D400A09A54 /* package.txt */; };
+		FB5965CB166A4ADB00A09A54 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = FB3FEF9A166A24F80036D778 /* main.m */; };
+		FB5965CE166A4B0500A09A54 /* GCDAsyncUdpSocket.m in Sources */ = {isa = PBXBuildFile; fileRef = FB5965B6166A448F00A09A54 /* GCDAsyncUdpSocket.m */; settings = {COMPILER_FLAGS = "-fobj -arc"; }; };
+		FB5965D0166A636300A09A54 /* Carbon.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FB5965CF166A636200A09A54 /* Carbon.framework */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		FB3FEFAF166A24F90036D778 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = FB3FEF81166A24F80036D778 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = FB3FEF89166A24F80036D778;
+			remoteInfo = SavingEnergy;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		FB3FEF8A166A24F80036D778 /* SavingEnergy.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SavingEnergy.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		FB3FEF8E166A24F80036D778 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
+		FB3FEF91166A24F80036D778 /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
+		FB3FEF92166A24F80036D778 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
+		FB3FEF93166A24F80036D778 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		FB3FEF96166A24F80036D778 /* SavingEnergy-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "SavingEnergy-Info.plist"; sourceTree = "<group>"; };
+		FB3FEF98166A24F80036D778 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		FB3FEF9A166A24F80036D778 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		FB3FEF9C166A24F80036D778 /* SavingEnergy-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "SavingEnergy-Prefix.pch"; sourceTree = "<group>"; };
+		FB3FEF9E166A24F80036D778 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; name = en; path = en.lproj/Credits.rtf; sourceTree = "<group>"; };
+		FB3FEFA0166A24F80036D778 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		FB3FEFA1166A24F80036D778 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		FB3FEFA4166A24F80036D778 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/MainMenu.xib; sourceTree = "<group>"; };
+		FB3FEFAB166A24F90036D778 /* SavingEnergyTests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SavingEnergyTests.octest; sourceTree = BUILT_PRODUCTS_DIR; };
+		FB3FEFAC166A24F90036D778 /* SenTestingKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SenTestingKit.framework; path = Library/Frameworks/SenTestingKit.framework; sourceTree = DEVELOPER_DIR; };
+		FB3FEFB3166A24F90036D778 /* SavingEnergyTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "SavingEnergyTests-Info.plist"; sourceTree = "<group>"; };
+		FB3FEFB5166A24F90036D778 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		FB3FEFB7166A24F90036D778 /* SavingEnergyTests.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SavingEnergyTests.h; sourceTree = "<group>"; };
+		FB3FEFB8166A24F90036D778 /* SavingEnergyTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SavingEnergyTests.m; sourceTree = "<group>"; };
+		FB3FEFC2166A26490036D778 /* View.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = View.xib; sourceTree = "<group>"; };
+		FB5965AF166A42AD00A09A54 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Foundation.framework; sourceTree = "<group>"; };
+		FB5965B1166A42B900A09A54 /* CoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = CoreServices.framework; sourceTree = "<group>"; };
+		FB5965B3166A448F00A09A54 /* GCDAsyncSocket.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCDAsyncSocket.h; sourceTree = "<group>"; };
+		FB5965B4166A448F00A09A54 /* GCDAsyncSocket.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GCDAsyncSocket.m; sourceTree = "<group>"; };
+		FB5965B5166A448F00A09A54 /* GCDAsyncUdpSocket.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCDAsyncUdpSocket.h; sourceTree = "<group>"; };
+		FB5965B6166A448F00A09A54 /* GCDAsyncUdpSocket.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GCDAsyncUdpSocket.m; sourceTree = "<group>"; };
+		FB5965C2166A48D400A09A54 /* package.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = package.txt; sourceTree = "<group>"; };
+		FB5965CF166A636200A09A54 /* Carbon.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Carbon.framework; path = System/Library/Frameworks/Carbon.framework; sourceTree = SDKROOT; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		FB3FEF87166A24F80036D778 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				FB5965D0166A636300A09A54 /* Carbon.framework in Frameworks */,
+				FB3FEF8F166A24F80036D778 /* Cocoa.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		FB3FEFA7166A24F90036D778 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				FB3FEFAD166A24F90036D778 /* SenTestingKit.framework in Frameworks */,
+				FB3FEFAE166A24F90036D778 /* Cocoa.framework in Frameworks */,
+				FB5965B0166A42AD00A09A54 /* Foundation.framework in Frameworks */,
+				FB5965B2166A42B900A09A54 /* CoreServices.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		FB3FEF7F166A24F80036D778 = {
+			isa = PBXGroup;
+			children = (
+				FB5965C1166A487200A09A54 /* Resources */,
+				FB3FEF94166A24F80036D778 /* SavingEnergy */,
+				FB3FEFB1166A24F90036D778 /* SavingEnergyTests */,
+				FB3FEF8D166A24F80036D778 /* Frameworks */,
+				FB3FEF8B166A24F80036D778 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		FB3FEF8B166A24F80036D778 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				FB3FEF8A166A24F80036D778 /* SavingEnergy.app */,
+				FB3FEFAB166A24F90036D778 /* SavingEnergyTests.octest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		FB3FEF8D166A24F80036D778 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				FB5965CF166A636200A09A54 /* Carbon.framework */,
+				FB5965B1166A42B900A09A54 /* CoreServices.framework */,
+				FB5965AF166A42AD00A09A54 /* Foundation.framework */,
+				FB3FEF8E166A24F80036D778 /* Cocoa.framework */,
+				FB3FEFAC166A24F90036D778 /* SenTestingKit.framework */,
+				FB3FEF90166A24F80036D778 /* Other Frameworks */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		FB3FEF90166A24F80036D778 /* Other Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				FB3FEF91166A24F80036D778 /* AppKit.framework */,
+				FB3FEF92166A24F80036D778 /* CoreData.framework */,
+				FB3FEF93166A24F80036D778 /* Foundation.framework */,
+			);
+			name = "Other Frameworks";
+			sourceTree = "<group>";
+		};
+		FB3FEF94166A24F80036D778 /* SavingEnergy */ = {
+			isa = PBXGroup;
+			children = (
+				FB5965B3166A448F00A09A54 /* GCDAsyncSocket.h */,
+				FB5965B4166A448F00A09A54 /* GCDAsyncSocket.m */,
+				FB5965B5166A448F00A09A54 /* GCDAsyncUdpSocket.h */,
+				FB5965B6166A448F00A09A54 /* GCDAsyncUdpSocket.m */,
+				FB3FEFA0166A24F80036D778 /* AppDelegate.h */,
+				FB3FEFA1166A24F80036D778 /* AppDelegate.m */,
+				FB3FEFA3166A24F80036D778 /* MainMenu.xib */,
+				FB3FEF95166A24F80036D778 /* Supporting Files */,
+				FB3FEFC2166A26490036D778 /* View.xib */,
+			);
+			path = SavingEnergy;
+			sourceTree = "<group>";
+		};
+		FB3FEF95166A24F80036D778 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				FB3FEF96166A24F80036D778 /* SavingEnergy-Info.plist */,
+				FB3FEF97166A24F80036D778 /* InfoPlist.strings */,
+				FB3FEF9A166A24F80036D778 /* main.m */,
+				FB3FEF9C166A24F80036D778 /* SavingEnergy-Prefix.pch */,
+				FB3FEF9D166A24F80036D778 /* Credits.rtf */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		FB3FEFB1166A24F90036D778 /* SavingEnergyTests */ = {
+			isa = PBXGroup;
+			children = (
+				FB3FEFB7166A24F90036D778 /* SavingEnergyTests.h */,
+				FB3FEFB8166A24F90036D778 /* SavingEnergyTests.m */,
+				FB3FEFB2166A24F90036D778 /* Supporting Files */,
+			);
+			path = SavingEnergyTests;
+			sourceTree = "<group>";
+		};
+		FB3FEFB2166A24F90036D778 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				FB3FEFB3166A24F90036D778 /* SavingEnergyTests-Info.plist */,
+				FB3FEFB4166A24F90036D778 /* InfoPlist.strings */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		FB5965C1166A487200A09A54 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				FB5965C2166A48D400A09A54 /* package.txt */,
+			);
+			name = Resources;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		FB3FEF89166A24F80036D778 /* SavingEnergy */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = FB3FEFBC166A24F90036D778 /* Build configuration list for PBXNativeTarget "SavingEnergy" */;
+			buildPhases = (
+				FB3FEF86166A24F80036D778 /* Sources */,
+				FB3FEF87166A24F80036D778 /* Frameworks */,
+				FB3FEF88166A24F80036D778 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = SavingEnergy;
+			productName = SavingEnergy;
+			productReference = FB3FEF8A166A24F80036D778 /* SavingEnergy.app */;
+			productType = "com.apple.product-type.application";
+		};
+		FB3FEFAA166A24F90036D778 /* SavingEnergyTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = FB3FEFBF166A24F90036D778 /* Build configuration list for PBXNativeTarget "SavingEnergyTests" */;
+			buildPhases = (
+				FB3FEFA6166A24F90036D778 /* Sources */,
+				FB3FEFA7166A24F90036D778 /* Frameworks */,
+				FB3FEFA8166A24F90036D778 /* Resources */,
+				FB3FEFA9166A24F90036D778 /* ShellScript */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				FB3FEFB0166A24F90036D778 /* PBXTargetDependency */,
+			);
+			name = SavingEnergyTests;
+			productName = SavingEnergyTests;
+			productReference = FB3FEFAB166A24F90036D778 /* SavingEnergyTests.octest */;
+			productType = "com.apple.product-type.bundle";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		FB3FEF81166A24F80036D778 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0450;
+				ORGANIZATIONNAME = "Valentin Kalchev";
+			};
+			buildConfigurationList = FB3FEF84166A24F80036D778 /* Build configuration list for PBXProject "SavingEnergy" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = FB3FEF7F166A24F80036D778;
+			productRefGroup = FB3FEF8B166A24F80036D778 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				FB3FEF89166A24F80036D778 /* SavingEnergy */,
+				FB3FEFAA166A24F90036D778 /* SavingEnergyTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		FB3FEF88166A24F80036D778 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				FB3FEF99166A24F80036D778 /* InfoPlist.strings in Resources */,
+				FB3FEF9F166A24F80036D778 /* Credits.rtf in Resources */,
+				FB3FEFA5166A24F80036D778 /* MainMenu.xib in Resources */,
+				FB3FEFC3166A26490036D778 /* View.xib in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		FB3FEFA8166A24F90036D778 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				FB3FEFB6166A24F90036D778 /* InfoPlist.strings in Resources */,
+				FB5965C3166A48D400A09A54 /* package.txt in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		FB3FEFA9166A24F90036D778 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# Run the unit tests in this test bundle.\n\"${SYSTEM_DEVELOPER_DIR}/Tools/RunUnitTests\"\n";
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		FB3FEF86166A24F80036D778 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				FB5965CE166A4B0500A09A54 /* GCDAsyncUdpSocket.m in Sources */,
+				FB5965CB166A4ADB00A09A54 /* main.m in Sources */,
+				FB3FEFA2166A24F80036D778 /* AppDelegate.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		FB3FEFA6166A24F90036D778 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				FB3FEFB9166A24F90036D778 /* SavingEnergyTests.m in Sources */,
+				FB5965B7166A448F00A09A54 /* GCDAsyncSocket.m in Sources */,
+				FB5965B8166A448F00A09A54 /* GCDAsyncUdpSocket.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		FB3FEFB0166A24F90036D778 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = FB3FEF89166A24F80036D778 /* SavingEnergy */;
+			targetProxy = FB3FEFAF166A24F90036D778 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		FB3FEF97166A24F80036D778 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				FB3FEF98166A24F80036D778 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		FB3FEF9D166A24F80036D778 /* Credits.rtf */ = {
+			isa = PBXVariantGroup;
+			children = (
+				FB3FEF9E166A24F80036D778 /* en */,
+			);
+			name = Credits.rtf;
+			sourceTree = "<group>";
+		};
+		FB3FEFA3166A24F80036D778 /* MainMenu.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				FB3FEFA4166A24F80036D778 /* en */,
+			);
+			name = MainMenu.xib;
+			sourceTree = "<group>";
+		};
+		FB3FEFB4166A24F90036D778 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				FB3FEFB5166A24F90036D778 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		FB3FEFBA166A24F90036D778 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.8;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = macosx;
+			};
+			name = Debug;
+		};
+		FB3FEFBB166A24F90036D778 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.8;
+				SDKROOT = macosx;
+			};
+			name = Release;
+		};
+		FB3FEFBD166A24F90036D778 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "SavingEnergy/SavingEnergy-Prefix.pch";
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				INFOPLIST_FILE = "SavingEnergy/SavingEnergy-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		FB3FEFBE166A24F90036D778 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "SavingEnergy/SavingEnergy-Prefix.pch";
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				INFOPLIST_FILE = "SavingEnergy/SavingEnergy-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+		FB3FEFC0166A24F90036D778 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/SavingEnergy.app/Contents/MacOS/SavingEnergy";
+				COMBINE_HIDPI_IMAGES = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"\"$(DEVELOPER_LIBRARY_DIR)/Frameworks\"",
+					"\"$(SRCROOT)\"",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "SavingEnergy/SavingEnergy-Prefix.pch";
+				INFOPLIST_FILE = "SavingEnergyTests/SavingEnergyTests-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUNDLE_LOADER)";
+				WRAPPER_EXTENSION = octest;
+			};
+			name = Debug;
+		};
+		FB3FEFC1166A24F90036D778 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/SavingEnergy.app/Contents/MacOS/SavingEnergy";
+				COMBINE_HIDPI_IMAGES = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"\"$(DEVELOPER_LIBRARY_DIR)/Frameworks\"",
+					"\"$(SRCROOT)\"",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "SavingEnergy/SavingEnergy-Prefix.pch";
+				INFOPLIST_FILE = "SavingEnergyTests/SavingEnergyTests-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUNDLE_LOADER)";
+				WRAPPER_EXTENSION = octest;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		FB3FEF84166A24F80036D778 /* Build configuration list for PBXProject "SavingEnergy" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				FB3FEFBA166A24F90036D778 /* Debug */,
+				FB3FEFBB166A24F90036D778 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		FB3FEFBC166A24F90036D778 /* Build configuration list for PBXNativeTarget "SavingEnergy" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				FB3FEFBD166A24F90036D778 /* Debug */,
+				FB3FEFBE166A24F90036D778 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		FB3FEFBF166A24F90036D778 /* Build configuration list for PBXNativeTarget "SavingEnergyTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				FB3FEFC0166A24F90036D778 /* Debug */,
+				FB3FEFC1166A24F90036D778 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = FB3FEF81166A24F80036D778 /* Project object */;
+}
