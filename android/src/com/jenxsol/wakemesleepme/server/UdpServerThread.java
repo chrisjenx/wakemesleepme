@@ -9,11 +9,15 @@ import java.util.concurrent.LinkedBlockingQueue;
 
 import android.os.Handler;
 
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import com.jenxsol.wakemesleepme.consts.Iface;
 import com.jenxsol.wakemesleepme.consts.Packets;
+import com.jenxsol.wakemesleepme.models.WrappedPacket;
+import com.jenxsol.wakemesleepme.server.UdpServer.EventPacketReceived;
 import com.jenxsol.wakemesleepme.server.UdpServer.EventServerStarted;
 import com.jenxsol.wakemesleepme.server.UdpServer.EventServerStopped;
-import com.jenxsol.wakemesleepme.services.LoggingFragment.EventLogOutput;
+import com.jenxsol.wakemesleepme.ui.fragments.LoggingFragment.EventLogOutput;
 import com.jenxsol.wakemesleepme.utils.QLog;
 import com.jenxsol.wakemesleepme.utils.WiFiSupport;
 
@@ -94,6 +98,8 @@ class UdpServerThread extends Thread implements Iface, Packets, OnDataReceivedLi
         finished();
     }
 
+    private static final Gson mGson = new GsonBuilder().create();
+
     /**
      * @see com.jenxsol.wakemesleepme.server.OnDataReceivedListener#onDataReceived(java.net.DatagramPacket)
      */
@@ -103,6 +109,11 @@ class UdpServerThread extends Thread implements Iface, Packets, OnDataReceivedLi
         sBus.post(new EventLogOutput("Received Packet: " + packet.getAddress().getHostAddress()
                 + " Message: " + new String(packet.getData())));
 
+        WrappedPacket wp = new WrappedPacket();
+        wp.setIpAddress(packet.getAddress().getHostAddress());
+        wp.setTime(System.currentTimeMillis());
+        wp.setPacket(packet);
+        sBus.post(new EventPacketReceived(wp));
     }
 
     /**
@@ -258,6 +269,9 @@ class UdpServerThread extends Thread implements Iface, Packets, OnDataReceivedLi
         {
 
             mSocket.close();
+            mListenerThread.run = false;
+            mListenerThread.interrupt();
+            mListenerThread = null;
             sBus.post(new EventLogOutput("UDP Server closed"));
             QLog.d("UDP Socket Closed");
         }

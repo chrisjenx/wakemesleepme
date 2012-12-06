@@ -7,7 +7,8 @@ import com.jenxsol.wakemesleepme.consts.Iface;
 public class PacketSupport
 {
 
-    public static final int PORT_WOL = 9;
+    public static final int PORT_WOL = 7;
+    // public static final int PORT_WOL = 9;
 
     private static final StringBuilder sb = new StringBuilder();
 
@@ -17,7 +18,7 @@ public class PacketSupport
         sb.setLength(0);
 
         sb.append('{').append("\"mac\" : \"").append(macString).append("\",").append("\"type\":")
-                .append("\"mobile\",").append("\"status\":\"alive\"");
+                .append("\"mobile\",").append("\"status\":\"alive\"}");
         String request = sb.toString();
         DatagramPacket p = new DatagramPacket(request.getBytes(), request.length());
         p.setPort(Iface.UDP_PORT_DESKTOP);

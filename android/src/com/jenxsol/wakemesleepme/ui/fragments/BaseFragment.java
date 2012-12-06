@@ -7,6 +7,9 @@ package com.jenxsol.wakemesleepme.ui.fragments;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+
+import com.jenxsol.wakemesleepme.AppPreferences;
+
 import de.greenrobot.event.EventBus;
 
 
@@ -16,6 +19,7 @@ import de.greenrobot.event.EventBus;
 public class BaseFragment extends Fragment
 {
 
+    protected static AppPreferences mPrefs = AppPreferences.get();
     protected static EventBus sBus = EventBus.getDefault();
 
     /**

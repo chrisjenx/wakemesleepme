@@ -3,7 +3,7 @@
  * @author chris.jenkins
  * @created Dec 1, 2012
  */
-package com.jenxsol.wakemesleepme.services;
+package com.jenxsol.wakemesleepme.ui.fragments;
 
 import java.util.Map;
 import java.util.Set;
@@ -16,7 +16,6 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.jenxsol.wakemesleepme.R;
-import com.jenxsol.wakemesleepme.ui.fragments.BaseFragment;
 
 /**
  * @author chris.jenkins
@@ -25,9 +24,9 @@ public class LoggingFragment extends BaseFragment
 {
 
     private static StringBuilder sb = new StringBuilder();
-    private static String logOutputFormat = "%d =: %s\n";
+    private static String logOutputFormat = "[%d] =: %s\n";
     private static int count = 0;
-    private LruCache<Integer, String> consoleStrings = new LruCache<Integer, String>(100);
+    private LruCache<Integer, String> consoleStrings = new LruCache<Integer, String>(30);
 
     private TextView mTV;
 

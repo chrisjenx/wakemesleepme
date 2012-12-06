@@ -5,6 +5,7 @@
  */
 package com.jenxsol.wakemesleepme.server;
 
+import java.lang.Thread.State;
 import java.net.DatagramPacket;
 
 import android.content.Context;
@@ -12,6 +13,7 @@ import android.net.wifi.WifiManager;
 
 import com.jenxsol.wakemesleepme.WMSMApplication;
 import com.jenxsol.wakemesleepme.consts.Iface;
+import com.jenxsol.wakemesleepme.models.WrappedPacket;
 import com.jenxsol.wakemesleepme.utils.QLog;
 
 import de.greenrobot.event.EventBus;
@@ -21,6 +23,7 @@ import de.greenrobot.event.EventBus;
  */
 public class UdpServer implements Iface
 {
+
     // Event bus
     private static EventBus sBus = EventBus.getDefault();
 
@@ -28,7 +31,8 @@ public class UdpServer implements Iface
 
     public static final UdpServer get()
     {
-        if (null == sSelf) sSelf = new UdpServer();
+        if (null == sSelf)
+            sSelf = new UdpServer();
         return sSelf;
     }
 
@@ -56,7 +60,10 @@ public class UdpServer implements Iface
             {
                 mServerThread = new UdpServerThread(null);
             }
-            mServerThread.start();
+            if (State.NEW.equals(mServerThread.getState()))
+            {
+                mServerThread.start();
+            }
         }
     }
 
@@ -67,12 +74,15 @@ public class UdpServer implements Iface
      */
     public void sendPacket(String data)
     {
-        if (data == null) return;
+        if (data == null)
+            return;
         synchronized (mLock)
         {
             start();
-            if (!isServerRunning()) return;
-            if (null == mServerThread) return;
+            if (!isServerRunning())
+                return;
+            if (null == mServerThread)
+                return;
             mServerThread.addPacketToSend(data.getBytes(), data.length());
         }
     }
@@ -84,11 +94,15 @@ public class UdpServer implements Iface
      */
     public void sendPacket(DatagramPacket packet)
     {
-        if (packet == null) return;
+        if (packet == null)
+            return;
         synchronized (mLock)
         {
-            if (!isServerRunning()) return;
-            if (null == mServerThread) return;
+            start();
+            if (!isServerRunning())
+                return;
+            if (null == mServerThread)
+                return;
             mServerThread.addPacketToSend(packet);
         }
     }
@@ -113,8 +127,10 @@ public class UdpServer implements Iface
      */
     private final boolean isServerRunning()
     {
-        if (null == mServerThread) return false;
-        if (mServerThread.isStarted() && mServerThread.isRunning()) return true;
+        if (null == mServerThread)
+            return false;
+        if (mServerThread.isStarted() && mServerThread.isRunning())
+            return true;
         return false;
     }
 
@@ -126,22 +142,39 @@ public class UdpServer implements Iface
      */
     public static final class EventServerStarted
     {
+
         public EventServerStarted()
         {
         }
     }
 
     /**
-     * Event for if the server was stopped, the sticky event is removed on the
-     * server dieing
+     * Event for if the server was stopped, the sticky event is removed on the server dieing
      * 
      * @author chris
      * 
      */
     public static final class EventServerStopped
     {
+
         public EventServerStopped()
         {
         }
+    }
+
+    public static final class EventPacketReceived
+    {
+
+        public final WrappedPacket packet;
+
+        /**
+         * @author chris.jenkins
+         * @param packet
+         */
+        public EventPacketReceived(WrappedPacket packet)
+        {
+            this.packet = packet;
+        }
+
     }
 }

@@ -5,12 +5,12 @@
  */
 package com.jenxsol.wakemesleepme;
 
+import android.app.Application;
+
 import com.bugsense.trace.BugSenseHandler;
 import com.jenxsol.wakemesleepme.consts.BuildConfig;
 import com.jenxsol.wakemesleepme.utils.AlarmSupport;
 import com.jenxsol.wakemesleepme.utils.WiFiSupport;
-
-import android.app.Application;
 
 /**
  * @author chris.jenkins
@@ -41,6 +41,9 @@ public class WMSMApplication extends Application
         {
             AlarmSupport.startBroadcastAliveService();
         }
+
+        // Add vals address
+        AppPreferences.get().addWakeAddress("58:B0:35:F2:DE:46");
     }
 
 }

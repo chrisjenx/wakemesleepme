@@ -2,12 +2,23 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="horizontal"
     tools:context=".HomeActivity" >
 
     <fragment
         android:id="@+id/fragment_logging"
-        android:name="com.jenxsol.wakemesleepme.services.LoggingFragment"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent" />
-    
+        android:name="com.jenxsol.wakemesleepme.ui.fragments.LoggingFragment"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        tools:layout="@layout/frag_log_view" />
+
+    <fragment
+        android:id="@+id/fragment_devices"
+        android:name="com.jenxsol.wakemesleepme.ui.fragments.DevicesFragment"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        tools:layout="@layout/frag_devices" />
+
 </LinearLayout>
